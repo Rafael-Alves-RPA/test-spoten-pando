@@ -33,8 +33,22 @@
 
           <div class="navbar-collapse collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav me-auto">
-
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="navbar-brand" href="{{ url('/home') }}">
+                  {{ __('Home') }}
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="navbar-brand" href="{{ url('/users') }}">
+                  {{ __('Users') }}
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="navbar-brand" href="{{ url('/banners') }}">
+                  {{ __('Banner') }}
+                </a>
+              </li>
             </ul>
 
             <!-- Right Side Of Navbar -->

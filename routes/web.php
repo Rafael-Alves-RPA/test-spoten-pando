@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BannerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,11 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::controller(BannerController::class)->group(function () {
+    Route::get('/banners', 'index')->name('banners.index');
+    Route::post('/banners/new', 'store');
 });
 
 
