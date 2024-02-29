@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\ShowBannerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
@@ -20,13 +21,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/show', [ShowBannerController::class, 'showAll'])->name('users.index');
+
 Route::controller(BannerController::class)->group(function () {
     Route::get('/banners', 'index')->name('banners.index');
     Route::post('/banners/new', 'store');
     Route::post('/banners/{id}', 'edit')->name('banners.edit');
     Route::delete('/banners/{id}', 'delete')->name('banners.delete');
 });
-
 
 Route::get('/users', [UsersController::class, 'index'])->name('users.index');
 

@@ -1,6 +1,6 @@
 <div>
   <button type="button" class="btn btn-primary z-4" data-bs-toggle="modal" data-bs-target="#editBanner{{ $id }}"
-    data-bs-whatever="@mdoa">Edit</button>
+    data-bs-whatever="@mdo">Edit</button>
   <form action="{{ route('banners.delete', ['id' => $id]) }}" method="POST">
     @csrf
     @method('DELETE')
