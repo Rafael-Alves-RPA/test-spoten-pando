@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ShowBannerController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------

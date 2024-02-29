@@ -21,11 +21,13 @@ class BannerController extends Controller
                 'banner' => 'required|min:4',
             ]);
             Banner::create($input);
+
             return redirect('banners')->with('success', 'Banner created successfully!');
         } catch (\Exception $e) {
             return redirect('banners')->with('error', 'Banner not created!' . $e->getMessage());
         }
     }
+
     public function edit(Request $request, $id)
     {
         try {
@@ -33,15 +35,18 @@ class BannerController extends Controller
                 'description' => $request->description,
                 'banner' => $request->banner,
             ]);
+
             return redirect('banners')->with('success', 'Banner updated successfully!');
         } catch (\Exception $e) {
             return redirect('banners')->with('error', 'Banner not updated!' . $e->getMessage());
         }
     }
+
     public function delete($id)
     {
         try {
             Banner::findOrFail($id)->delete();
+
             return redirect('banners')->with('success', 'Banner deleted successfully!');
         } catch (\Exception $e) {
             return redirect('banners')->with('error', 'Banner not deleted!' . $e->getMessage());
