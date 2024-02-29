@@ -23,6 +23,10 @@ class BannersDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', 'banners.action')
+            ->setRowData([
+                'data-banner' => 'row-{{$banner}}',
+                'data-description' => 'row-{{$description}}',
+            ])
             ->setRowId('id');
     }
 

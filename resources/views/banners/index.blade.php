@@ -15,7 +15,7 @@
       <div class="card-header">Manage Banners</div>
       <div class="d-flex justify-content-end position-relative z-3">
         <button type="button" class="btn btn-primary position-absolute top-50 end-0 m-3" data-bs-toggle="modal"
-          data-bs-target="#exampleModal" data-bs-whatever="@mdo">Create New</button>
+          data-bs-target="#createBanner" data-bs-whatever="@mdo">Create New</button>
       </div>
       <div class="card-body">
         {{ $dataTable->table() }}
@@ -26,11 +26,11 @@
 
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="createBanner" tabindex="-1" aria-labelledby="createBannerLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Create new banner</h1>
+        <h1 class="modal-title fs-5" id="createBannerLabel">Create new banner</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form action="/banners/new" method="POST">

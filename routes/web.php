@@ -23,6 +23,8 @@ Route::get('/', function () {
 Route::controller(BannerController::class)->group(function () {
     Route::get('/banners', 'index')->name('banners.index');
     Route::post('/banners/new', 'store');
+    Route::post('/banners/{id}', 'edit')->name('banners.edit');
+    Route::delete('/banners/{id}', 'delete')->name('banners.delete');
 });
 
 

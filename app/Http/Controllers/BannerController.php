@@ -17,25 +17,25 @@ class BannerController extends Controller
     {
         try {
             $input = $request->validate([
-                'description' => 'required|',
+                'description' => 'required',
                 'banner' => 'required|min:4',
             ]);
             Banner::create($input);
             return redirect('banners')->with('success', 'Banner created successfully!');
         } catch (\Exception $e) {
-            return redirect('banners')->with('error', 'Banner not created!' . $e);
+            return redirect('banners')->with('error', 'Banner not created!' . $e->getMessage());
         }
     }
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         try {
             Banner::findOrFail($id)->update([
-                'description' => $this->description,
-                'banner' => $this->banner,
+                'description' => $request->description,
+                'banner' => $request->banner,
             ]);
             return redirect('banners')->with('success', 'Banner updated successfully!');
         } catch (\Exception $e) {
-            return redirect('banners')->with('error', 'Banner not updated!' . $e);
+            return redirect('banners')->with('error', 'Banner not updated!' . $e->getMessage());
         }
     }
     public function delete($id)
@@ -44,7 +44,7 @@ class BannerController extends Controller
             Banner::findOrFail($id)->delete();
             return redirect('banners')->with('success', 'Banner deleted successfully!');
         } catch (\Exception $e) {
-            return redirect('banners')->with('error', 'Banner not deleted!' . $e);
+            return redirect('banners')->with('error', 'Banner not deleted!' . $e->getMessage());
         }
     }
 }
