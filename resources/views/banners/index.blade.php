@@ -33,23 +33,16 @@
         <h1 class="modal-title fs-5" id="createBannerLabel">Create new banner</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="/banners/new" method="POST">
+      <form action="/banners/new" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="modal-body">
           <div class="mb-3">
-            <label for="banner" class="col-form-label">Banner:</label>
-            <input type="text" class="form-control @error('banner') is-invalid @enderror" id="banner"
-              name="banner" required placeholder="https://unsplash.com/photos">
-            @error('banner')
-              <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-          </div>
-          <div class="mb-3">
             <label for="description" class="col-form-label">Description:</label>
             <input type="text" class="form-control" id="description" required name="description"></input>
-            @error('description')
-              <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
+          </div>
+          <div class="mb-3">
+            <label for="banner" class="col-form-label">Banner:</label>
+            <input type="file" class="form-control" id="banner" name="banner" required>
           </div>
         </div>
         <div class="modal-footer">

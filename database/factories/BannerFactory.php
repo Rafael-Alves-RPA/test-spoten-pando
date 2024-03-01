@@ -18,7 +18,11 @@ class BannerFactory extends Factory
     {
         return [
             'description' => fake()->name(),
-            'banner' => fake()->imageUrl(),
+            'banner' => fake()->image(
+                dir: public_path('banner'),
+                width: 250,
+                height: 200,
+            ),
         ];
     }
 }

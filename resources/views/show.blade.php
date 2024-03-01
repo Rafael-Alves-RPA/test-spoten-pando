@@ -11,7 +11,7 @@
     <div class="carousel-inner">
       @foreach ($banners as $key => $banner)
         <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-          <img src="{{ $banner->banner }}" class="img-fluid p-4" style="width: 100%; height: 600px"
+          <img src="{{ asset('banner/' . $banner->banner) }}" class="img-fluid p-4" style="width: 100%; height: 600px"
             alt="{{ $banner->description }}">
           <div class="carousel-caption d-none d-md-block">
             <h5>{{ $banner->description }}</h5>
