@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\BannersDataTable;
-use Illuminate\Http\UploadedFile;
 use App\Models\Banner;
 use Illuminate\Http\Request;
 
@@ -19,34 +18,53 @@ class BannerController extends Controller
         try {
             $request->validate([
                 'description' => 'required|min:4',
-                'banner' => 'required|file|mimes:jpg,jpeg,png',
+                'banner' => 'required|image',
             ]);
             $bannerName = '';
             if ($banner = $request->file('banner')) {
-                $bannerName = time() . '-' . uniqid() . '.' . $banner->getClientOriginalExtension();
+                $bannerName = time().'-'.uniqid().'.'.$banner->getClientOriginalExtension();
                 $banner->move('banner', $bannerName);
             }
             Banner::create([
                 'banner' => $bannerName,
                 'description' => $request->description,
             ]);
+
             return redirect('banners')->with('success', 'Banner created successfully!');
         } catch (\Exception $e) {
-            return redirect('banners')->with('error', 'Banner not created!' . ' ' . $e->getMessage());
+            return redirect('banners')->with('error', 'Banner not created!'.' '.$e->getMessage());
         }
     }
 
-    public function edit(Request $request, $id)
+    public function edit($id)
+    {
+        $banner = Banner::findOrFail($id);
+
+        return view('/banners/edit', [
+            'banner' => $banner,
+        ]);
+    }
+
+    public function editSave(Request $request, $id)
     {
         try {
+            $request->validate([
+                'description' => 'required|min:4',
+                'banner' => 'required|image',
+            ]);
+            $bannerName = '';
+            if ($banner = $request->file('banner')) {
+                $bannerName = time().'-'.uniqid().'.'.$banner->getClientOriginalExtension();
+                $banner->move('banner', $bannerName);
+            }
             Banner::findOrFail($id)->update([
                 'description' => $request->description,
-                'banner' => $request->banner,
+                'banner' => $bannerName,
             ]);
 
             return redirect('banners')->with('success', 'Banner updated successfully!');
         } catch (\Exception $e) {
-            return redirect('banners')->with('error', 'Banner not updated!' . ' ' . $e->getMessage());
+            return redirect('banners')->with('error', 'Banner not updated!'.' '.$e->getMessage());
         }
     }
 
@@ -57,7 +75,7 @@ class BannerController extends Controller
 
             return redirect('banners')->with('success', 'Banner deleted successfully!');
         } catch (\Exception $e) {
-            return redirect('banners')->with('error', 'Banner not deleted!' . ' ' . $e->getMessage());
+            return redirect('banners')->with('error', 'Banner not deleted!'.' '.$e->getMessage());
         }
     }
 }

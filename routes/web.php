@@ -28,8 +28,11 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::controller(BannerController::class)->group(function () {
         Route::get('/banners', 'index')->name('banners.index');
-        Route::post('/banners/new', 'store');
-        Route::post('/banners/{id}', 'edit')->name('banners.edit');
+        Route::post('/banners/new', 'store')->name('banners.store');
+
+        Route::get('/banners/edit/{id}', 'edit')->name('banners.edit');
+        Route::post('/banners/{id}', 'editSave')->name('banners.editSave');
+
         Route::delete('/banners/{id}', 'delete')->name('banners.delete');
     })->middleware('auth');
 
